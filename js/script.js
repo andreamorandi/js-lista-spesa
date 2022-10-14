@@ -2,27 +2,27 @@ let items = [];
 let quantities = [];
 
 let item = "";
-let quantity = 0;
 do {
     item = prompt("Inserisci articolo, x per terminare");
-    do {
-        quantity = parseInt(prompt("Inserisci quantità"));
-        console.log(quantity);
-    } while (isNaN(quantity));
-    if (item !== "x" && quantity !== 0) {
-        items.push(item);
-        quantities.push(quantity);
+    if (item != "x") {
+        let quantity = 0;
+        do {
+            quantity = parseInt(prompt("Inserisci quantità"));
+        } while (isNaN(quantity));
+        if (quantity !== 0) {
+            items.push(item);
+            quantities.push(quantity);
+        }
     }
-} while (item !== "x");
+} while(item != "x");
 
-const itemsContainer = document.querySelector(".items-container");
+const itemsList = document.querySelector(".items-list");
 let i = 0;
 while (i < items.length) {
     const thisQuantifiedItem = `
-        <h2>
-            ${quantities[i]}- 
-            ${items[i]}
-        </h2>`;
-    itemsContainer.innerHTML += thisQuantifiedItem;
+        <li>
+            <h2>${quantities[i]}x ${items[i]}</h2>
+        </li>`;
+    itemsList.innerHTML += thisQuantifiedItem;
     i++;
 }
